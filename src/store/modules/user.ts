@@ -1,19 +1,16 @@
-import Vuex from "vuex";
-type stateType = {
-  avatar: string;
-  nickname: string;
-};
-export default new Vuex.Store({
+import Vuex, { createStore } from "vuex";
+import { userType } from "../index.d";
+export default createStore<userType>({
   state: {
     avatar: "",
     nickname: "",
   },
   mutations: {
-    SET_AVATAR(state: stateType, value: string): void {
+    SET_AVATAR(state: userType, value: string): void {
       state.avatar = value;
     },
-    SET_NICKNAME(state: stateType, value: string): void {
-      state.nickname = value;
+    SET_NICKNAME(state: userType, value: string): void {
+      state.avatar = value;
     },
   },
 });
