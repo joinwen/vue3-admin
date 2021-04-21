@@ -1,12 +1,10 @@
 <template>
   <el-menu-item @click="handleMenuClick" :disabled="disabled" :index="index">
-    <template #title>
-      <i v-if="icon" :class="[icon]"></i>
-      <span>{{ title }}</span>
-    </template>
+    <i v-if="icon" :class="[icon]"></i>
+    <span>{{ title }}</span>
   </el-menu-item>
 </template>
-<script lang="ts">
+<script>
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "MenuItem",
@@ -26,6 +24,10 @@ export default defineComponent({
     title: {
       type: String,
       default: "",
+    },
+    badge: {
+      type: Number,
+      default: null,
     },
   },
   methods: {

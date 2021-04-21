@@ -1,5 +1,5 @@
 <template>
-  <div class="Menu" v-if="!data.hidden">
+  <div v-if="!data.hidden">
     <menu-item
       v-if="!data.children || data.children.length == 0"
       :index="data.path"
@@ -14,11 +14,11 @@
     />
     <template v-if="data.children && data.children.length > 1">
       <el-submenu :index="data.path" :key="data.name">
-        <template v-slot:title>
+        <template #title>
           <i v-if="data.meta && data.meta.icon" :class="[data.meta.icon]"></i>
           <span>{{ data.meta.title }}</span>
         </template>
-        <template v-for="(menu, index) in data.children" :key="index">
+        <template :key="index" v-for="(menu, index) in data.children">
           <Menu :data="menu" />
         </template>
       </el-submenu>
