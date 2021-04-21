@@ -33,6 +33,7 @@ export default defineComponent({
   }
   .main {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
 
     .main-main {

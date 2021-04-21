@@ -1,7 +1,7 @@
 <template>
   <div class="Basic-Header">
     <div class="pseudo-header"></div>
-    <header class="header header-fixed"></header>
+    <header class="header header-fixed shadow-light"></header>
   </div>
 </template>
 <script>

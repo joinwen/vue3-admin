@@ -18,9 +18,11 @@
           <i v-if="data.meta && data.meta.icon" :class="[data.meta.icon]"></i>
           <span>{{ data.meta.title }}</span>
         </template>
-        <template :key="index" v-for="(menu, index) in data.children">
-          <Menu :data="menu" />
-        </template>
+        <Menu
+          :key="index"
+          v-for="(menu, index) in data.children"
+          :data="menu"
+        />
       </el-submenu>
     </template>
   </div>

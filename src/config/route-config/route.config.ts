@@ -13,6 +13,7 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
     component: BasicLayout,
     meta: {
       title: "表单",
+      icon: "el-icon-s-grid",
     },
     children: [
       {
@@ -48,28 +49,29 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
     component: BasicLayout,
     meta: {
       title: "异常",
+      icon: "el-icon-s-marketing",
     },
     children: [
       {
-        path: "/exception/403",
-        name: "403",
-        component: () => import("@/views/exception/403.vue"),
+        path: "/exception/error-403",
+        name: "Exception403",
+        component: () => import("@/views/exception/Exception403.vue"),
         meta: {
           title: "403",
         },
       },
       {
-        path: "/exception/404",
-        name: "404",
-        component: () => import("@/views/exception/404.vue"),
+        path: "/exception/error-404",
+        name: "Exception404",
+        component: () => import("@/views/exception/Exception404.vue"),
         meta: {
           title: "404",
         },
       },
       {
-        path: "/exception/500",
-        name: "500",
-        component: () => import("@/views/exception/500.vue"),
+        path: "/exception/error-500",
+        name: "Exception500",
+        component: () => import("@/views/exception/Exception500.vue"),
         meta: {
           title: "500",
         },
@@ -82,6 +84,7 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
     component: BasicLayout,
     meta: {
       title: "结果页",
+      icon: "el-icon-s-opportunity",
     },
     children: [
       {

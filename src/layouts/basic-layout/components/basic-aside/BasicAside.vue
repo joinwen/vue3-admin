@@ -2,53 +2,25 @@
   <div class="Basic-Aside">
     <div class="pseudo-aside pseudo-aside-none"></div>
     <aside class="aside aside-static">
-      <el-menu
-        default-active="1-4-1"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-        :collapse="isCollapse"
-      >
-        <el-submenu index="1">
-          <template #title>
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
-          </template>
-          <el-menu-item-group>
-            <template #title>分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
-            <el-menu-item index="1-3">选项3</el-menu-item>
-          </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template #title>选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <template #title>导航二</template>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <i class="el-icon-document"></i>
-          <template #title>导航三</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <i class="el-icon-setting"></i>
-          <template #title>导航四</template>
-        </el-menu-item>
-      </el-menu>
+      <div class="brand-logo" cursor="pointer">
+        <img :src="require('@/assets/site/logo.png')" alt="" />
+        <h1>vue3 admin</h1>
+      </div>
+      <el-scrollbar border-none x-hidden class="scrollbar">
+        <el-menu class="el-menu-vertical-demo">
+          <Menu v-for="(menu, index) in routes" :key="index" :data="menu" />
+        </el-menu>
+      </el-scrollbar>
     </aside>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
+import Menu from "@/components/menu/Menu.vue";
 export default defineComponent({
   name: "BasicAside",
-  components: {},
+  components: { Menu },
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
   },
@@ -68,6 +40,21 @@ export default defineComponent({
   }
   .aside {
     background: @sideBg;
+    .brand-logo {
+      display: flex;
+      height: @headerHeight;
+      align-items: center;
+      justify-content: center;
+      color: @menuColorActive;
+      img {
+        width: 32px;
+        height: 32px;
+        margin-right: 0.5rem;
+      }
+      h1 {
+        font-size: 18px;
+      }
+    }
   }
   .aside-static {
     width: @sideWidth;

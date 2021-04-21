@@ -1,12 +1,12 @@
 <template>
-  <div class="404">
-    <h2>404</h2>
+  <div class="403">
+    <h3>403</h3>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
-  name: "404",
+  name: "Exception403",
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
   },

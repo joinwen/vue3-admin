@@ -1,6 +1,6 @@
 <template>
   <div class="Basic-Footer">
-    <h3 class="tx-center">Basic Footer</h3>
+    <p class="tx-center color-gray-600">Copyright &copy; 2021 flywen.top</p>
   </div>
 </template>
 <script>

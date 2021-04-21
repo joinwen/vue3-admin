@@ -1,11 +1,101 @@
-@sideWidth: 250px;
+@sideWidth: 200px;
 @sideBg: #282c34;
-@headerHeight: 64px;
-@headerBg: #bd9696;
+@headerHeight: 48px;
+@headerBg: #fff;
 @footerBg: #f1f3f4;
 @footerHeight: 48px;
 
 @subMenuBg: #282c34;
-@menuColor: #fff;
-@menuColorActive: #f00;
-@subMenuBgActive: #0f0;
+@menuColor: #a6aaae;
+@menuColorActive: #fff;
+@subMenuBgActive: #1890ff;
+@mainBg: #f0f2f5;
+
+// el-scrollbar 隐藏 x 轴
+*[x-hidden] .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+  margin-right: -18px !important;
+}
+
+// el-scrollbar 隐藏 border-right
+*[border-none] .el-menu {
+  border-right: none !important;
+}
+
+.scrollbar {
+  height: calc(100% - @headerHeight);
+}
+
+// el-menu 防卡
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: @sideWidth;
+  height: calc(100% - @headerHeight);
+}
+
+// el-menu 折叠隐藏文字和^箭头
+.el-menu--collapse {
+  .Menu {
+    .el-submenu__icon-arrow,
+    .el-submenu__title span {
+      display: none;
+    }
+  }
+}
+
+// 二级、三级等菜单背景色 和 hover: 背景色, color色, icon色
+.el-menu-item {
+  background-color: @subMenuBg !important;
+  color: @menuColor !important;
+  &:hover {
+    color: @menuColorActive !important;
+    background-color: @subMenuBg !important;
+    i {
+      color: @menuColorActive !important;
+    }
+  }
+}
+
+// 二级、三级等菜单背景色 和 hover: 背景色, color色, icon色
+.el-submenu__title {
+  background-color: @subMenuBg !important;
+  color: @menuColor !important;
+  &:hover {
+    color: @menuColorActive !important;
+    background-color: @subMenuBg !important;
+    i {
+      color: @menuColorActive !important;
+    }
+  }
+}
+
+// 一级菜单背景色 和 hover: 背景色, color色, icon色
+.el-scrollbar__view {
+  .el-menu {
+    .el-submenu {
+      .el-submenu__title {
+        background-color: @subMenuBg !important;
+        &:hover {
+          background-color: @subMenuBg !important;
+        }
+      }
+    }
+  }
+}
+
+// 菜单激活色
+.el-menu-item.is-active {
+  background-color: @subMenuBgActive !important;
+  color: @menuColorActive !important;
+}
+
+// 父级 菜单 激活色
+.el-submenu.is-active > .el-submenu__title {
+  color: @menuColorActive !important;
+  i {
+    color: @menuColorActive !important;
+  }
+}
+
+// 折叠 父级菜单 激活色
+.el-menu--collapse .el-submenu.is-active > .el-submenu__title {
+}
