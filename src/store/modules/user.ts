@@ -1,16 +1,15 @@
-import Vuex, { createStore } from "vuex";
 import { userType } from "../index.d";
-export default createStore<userType>({
+export default {
   state: {
     avatar: "",
-    nickname: "",
+    nickname: "拂晓神剑",
   },
   mutations: {
     SET_AVATAR(state: userType, value: string): void {
       state.avatar = value;
     },
     SET_NICKNAME(state: userType, value: string): void {
-      state.avatar = value;
+      state.nickname = value;
     },
   },
-});
+};

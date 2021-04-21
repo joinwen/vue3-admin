@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import { constantRoutes } from "@/config/route-config/route.config";
 
 const router = createRouter({
