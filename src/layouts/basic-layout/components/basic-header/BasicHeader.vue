@@ -1,6 +1,7 @@
 <template>
-  <div class="basic-header">
-    <h3>Basic Header</h3>
+  <div class="Basic-Header">
+    <div class="pseudo-header"></div>
+    <header class="header header-fixed"></header>
   </div>
 </template>
 <script>
@@ -16,10 +17,26 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
-.basic-header {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: yellowgreen;
+@import "../../../../bootstrap/style/basic-layout";
+.Basic-Header {
+  .pseudo-header {
+    height: @headerHeight;
+  }
+  .pseudo-header-hidden {
+    display: none;
+  }
+  .header {
+    height: @headerHeight;
+    background: @headerBg;
+  }
+  .header-fixed {
+    position: fixed;
+    top: 0;
+    left: @sideWidth;
+    right: 0;
+  }
+  .header-static {
+    width: 100%;
+  }
 }
 </style>

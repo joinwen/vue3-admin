@@ -1,9 +1,9 @@
 <template>
-  <div class="basic-main">
-    <h2>Basic Main</h2>
-    <el-button class="m-l-3" @click="() => (visible = !visible)"
-      >更多</el-button
-    >
+  <div class="Basic-Main">
+    <h2 class="tx-center">Basic Main</h2>
+    <el-button class="m-l-3" @click="handleTrigger">更多</el-button>
+    {{ nickname }}
+    {{ size }}
     <p class="p-3 fs-md leading-loose">
       庆历四年春2，滕子京谪守巴陵郡3。越明年4，政通人和5，百废具兴6。乃重修岳阳楼7，增其旧制8，刻唐贤今人诗赋于其上9。属予作文以记之10。
       予观夫巴陵胜状11，在洞庭一湖。衔远山12，吞长江13，浩浩汤汤14，横无际涯15；朝晖夕阴，气象万千16。此则岳阳楼之大观也17，前人之述备矣18。然则北通巫峡19，南极潇湘20，迁客骚人21，多会于此22，览物之情，得无异乎23？
@@ -32,24 +32,32 @@
   </div>
 </template>
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { mapGetters, mapMutations, useStore } from "vuex";
 export default defineComponent({
   name: "BasicMain",
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
+  },
+  computed: {
+    ...mapGetters(["nickname", "size"]),
   },
   data() {
     return {
       visible: false,
     };
   },
+  methods: {
+    ...mapMutations(["SET_NICKNAME", "SET_SIZE"]),
+    handleTrigger() {
+      this.visible = !this.visible;
+      this.SET_NICKNAME("ok");
+      this.SET_SIZE("bigger");
+    },
+  },
 });
 </script>
 <style lang="less" scoped>
-.basic-main {
-  width: 100%;
-  height: 100%;
-  background: aliceblue;
-  overflow: hidden;
+.Basic-Main {
 }
 </style>

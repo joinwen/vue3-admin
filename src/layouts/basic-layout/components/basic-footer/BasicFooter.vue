@@ -1,6 +1,6 @@
 <template>
-  <div class="basic-footer">
-    <h3>Basic Footer</h3>
+  <div class="Basic-Footer">
+    <h3 class="tx-center">Basic Footer</h3>
   </div>
 </template>
 <script>
@@ -16,10 +16,11 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
-.basic-footer {
+@import "../../../../bootstrap/style/basic-layout";
+.Basic-Footer {
   width: 100%;
-  height: 48px;
-  overflow: hidden;
-  background: burlywood;
+  min-height: @headerHeight;
+  height: @headerHeight;
+  background: @footerBg;
 }
 </style>
