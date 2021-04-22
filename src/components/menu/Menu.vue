@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!data.hidden">
+  <template v-if="!data.hidden">
     <menu-item
       v-if="!data.children || data.children.length == 0"
       :index="data.path"
@@ -25,7 +25,7 @@
         />
       </el-submenu>
     </template>
-  </div>
+  </template>
 </template>
 <script lang="ts">
 import MenuItem from "./MenuItem.vue";

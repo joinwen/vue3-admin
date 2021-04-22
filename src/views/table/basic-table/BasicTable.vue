@@ -12,14 +12,25 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 export default defineComponent({
   name: "BasicTable",
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
-  },
-  data() {
-    return {};
+    let tableData = ref([
+      {
+        date: "2021-01-05",
+        name: "fly",
+        address: "china shanghai",
+        school: "njit",
+        company: "hy",
+        gender: "male",
+        age: 23,
+      },
+    ]);
+    return {
+      tableData,
+    };
   },
 });
 </script>

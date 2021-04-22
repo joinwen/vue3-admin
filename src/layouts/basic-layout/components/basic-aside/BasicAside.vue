@@ -1,14 +1,23 @@
 <template>
   <div class="Basic-Aside">
-    <div class="pseudo-aside pseudo-aside-none"></div>
-    <aside class="aside aside-static">
+    <div :class="[pseudoSideClass, 'ease-in-0.25']"></div>
+    <aside :class="[sideClass, 'ease-in-0.25']">
       <div class="brand-logo" cursor="pointer">
         <img :src="require('@/assets/site/logo.png')" alt="" />
-        <h1>vue3 admin</h1>
+        <h1 v-if="sideBar">vue3 admin</h1>
       </div>
       <el-scrollbar border-none x-hidden class="scrollbar">
-        <el-menu class="el-menu-vertical-demo">
-          <Menu v-for="(menu, index) in routes" :key="index" :data="menu" />
+        <el-menu
+          class="el-menu-vertical-demo"
+          :default-active="$route.path"
+          :unique-opened="true"
+          :collapse="!sideBar"
+        >
+          <Menu
+            v-for="(menu, index) in routes[0].children"
+            :key="index"
+            :data="menu"
+          />
         </el-menu>
       </el-scrollbar>
     </aside>
@@ -25,7 +34,36 @@ export default defineComponent({
     console.log(props, attrs, emit, slots);
   },
   computed: {
-    ...mapGetters(["routes"]),
+    ...mapGetters(["routes", "sideBar", "fixedSideBar"]),
+    pseudoSideClass() {
+      let classStr = [];
+      if (this.sideBar) {
+        classStr.push("pseudo-aside");
+      } else {
+        classStr.push("pseudo-aside-shrink");
+      }
+      if (!this.fixedSideBar) {
+        classStr.push("pseudo-aside-hidden");
+      }
+      return classStr.join(" ");
+    },
+    sideClass() {
+      let classStr = ["aside"];
+      if (this.sideBar) {
+        if (this.fixedSideBar) {
+          classStr.push("aside-fixed");
+        } else {
+          classStr.push("aside-static");
+        }
+      } else {
+        if (this.fixedSideBar) {
+          classStr.push("aside-fixed-shrink");
+        } else {
+          classStr.push("aside-static-shrink");
+        }
+      }
+      return classStr.join(" ");
+    },
   },
 });
 </script>
@@ -34,6 +72,11 @@ export default defineComponent({
 .Basic-Aside {
   .pseudo-aside {
     width: @sideWidth;
+    min-width: @sideWidth;
+  }
+  .pseudo-aside-shrink {
+    width: @sideShrinkWidth;
+    min-width: @sideShrinkWidth;
   }
   .pseudo-aside-hidden {
     display: none;
@@ -56,16 +99,33 @@ export default defineComponent({
       }
     }
   }
+
   .aside-static {
     width: @sideWidth;
+    min-width: @sideWidth;
     height: 100%;
   }
+
+  .aside-static-shrink {
+    width: @sideShrinkWidth;
+    min-width: @sideShrinkWidth;
+    height: 100%;
+  }
+
   .aside-fixed {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     width: @sideWidth;
+  }
+
+  .aside-fixed-shrink {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: @sideShrinkWidth;
   }
 }
 </style>

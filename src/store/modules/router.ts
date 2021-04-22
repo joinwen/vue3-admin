@@ -6,10 +6,10 @@ export default {
     addRoutes: [],
   },
   mutations: {
-    SET_ROUTES(state: routerType, value: any[]) {
+    SET_ROUTES(state: routerType, value: never[]): void {
       state.routes = value;
     },
-    SET_ADD_ROUTES(state: routerType, value: any[]) {
+    SET_ADD_ROUTES(state: routerType, value: never[]): void {
       state.addRoutes = value;
     },
   },

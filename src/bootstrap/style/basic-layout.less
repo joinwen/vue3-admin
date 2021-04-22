@@ -1,4 +1,6 @@
+@import "theme";
 @sideWidth: 200px;
+@sideShrinkWidth: 64px;
 @sideBg: #282c34;
 @headerHeight: 48px;
 @headerBg: #fff;
@@ -22,6 +24,7 @@
   border-right: none !important;
 }
 
+// scrollbar 高度
 .scrollbar {
   height: calc(100% - @headerHeight);
 }
@@ -33,14 +36,14 @@
 }
 
 // el-menu 折叠隐藏文字和^箭头
-.el-menu--collapse {
-  .Menu {
-    .el-submenu__icon-arrow,
-    .el-submenu__title span {
-      display: none;
-    }
-  }
-}
+//.el-menu--collapse {
+//  .Menu {
+//    .el-submenu__icon-arrow,
+//    .el-submenu__title span {
+//      display: none;
+//    }
+//  }
+//}
 
 // 二级、三级等菜单背景色 和 hover: 背景色, color色, icon色
 .el-menu-item {
