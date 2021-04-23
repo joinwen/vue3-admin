@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0f0fe4"],{"9f78":function(e,t,n){"use strict";n.r(t);var c=n("7a23"),o={class:"Step-Table"},a=Object(c["createVNode"])("h2",null,"分布表单",-1);function r(e,t,n,r,s,u){return Object(c["openBlock"])(),Object(c["createBlock"])("div",o,[a])}var s=Object(c["defineComponent"])({name:"StepTable",setup:function(e,t){var n=t.attrs,c=t.emit,o=t.slots;console.log(e,n,c,o)},data:function(){return{}}});s.render=r;t["default"]=s}}]);
+//# sourceMappingURL=chunk-2d0f0fe4.09e8f1e0.js.map
