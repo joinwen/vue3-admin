@@ -21,14 +21,19 @@
           ></path>
         </svg>
       </span>
+      <div class="breadcrumb">
+        <bread-crumb size="base" :has-hr="false" />
+      </div>
     </header>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore, mapGetters } from "vuex";
+import BreadCrumb from "@/components/breadcrumb/BreadCrumb.vue";
 export default defineComponent({
   name: "BasicHeader",
+  components: { BreadCrumb },
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
     const store = useStore();
@@ -90,6 +95,11 @@ export default defineComponent({
       padding-right: 1rem;
       align-items: center;
       height: @headerHeight;
+      vertical-align: middle;
+    }
+    & > .breadcrumb {
+      display: inline-block;
+      vertical-align: middle;
     }
   }
   .header-fixed {
