@@ -53,6 +53,34 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
         ],
       },
       {
+        path: "/result",
+        name: "Result",
+        redirect: "/result/failure",
+        component: RouteView,
+        meta: {
+          title: "结果页",
+          icon: "el-icon-s-opportunity",
+        },
+        children: [
+          {
+            path: "/result/failure",
+            name: "Failure",
+            component: () => import("@/views/result/FailureResult.vue"),
+            meta: {
+              title: "失败页",
+            },
+          },
+          {
+            path: "/result/success",
+            name: "Success",
+            component: () => import("@/views/result/SuccessResult.vue"),
+            meta: {
+              title: "成功页",
+            },
+          },
+        ],
+      },
+      {
         path: "/exception",
         name: "Failure",
         component: RouteView,
@@ -62,54 +90,27 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
         },
         children: [
           {
-            path: "/exception/error-403",
-            name: "Exception403",
-            component: () => import("@/views/exception/Exception403.vue"),
+            path: "/exception/not-found",
+            name: "ExceptionNotFound",
+            component: () => import("@/views/exception/ExceptionNotFound.vue"),
             meta: {
-              title: "403",
+              title: "not found",
             },
           },
           {
-            path: "/exception/error-404",
-            name: "Exception404",
-            component: () => import("@/views/exception/Exception404.vue"),
+            path: "/exception/forbidden",
+            name: "ExceptionForbidden",
+            component: () => import("@/views/exception/ExceptionForbidden.vue"),
             meta: {
-              title: "404",
+              title: "forbidden",
             },
           },
           {
-            path: "/exception/error-500",
-            name: "Exception500",
-            component: () => import("@/views/exception/Exception500.vue"),
+            path: "/exception/error",
+            name: "ExceptionError",
+            component: () => import("@/views/exception/ExceptionError.vue"),
             meta: {
-              title: "500",
-            },
-          },
-        ],
-      },
-      {
-        path: "/result",
-        name: "Result",
-        component: RouteView,
-        meta: {
-          title: "结果页",
-          icon: "el-icon-s-opportunity",
-        },
-        children: [
-          {
-            path: "/result/success",
-            name: "Success",
-            component: () => import("@/views/result/SuccessResult.vue"),
-            meta: {
-              title: "成功页",
-            },
-          },
-          {
-            path: "/result/failure",
-            name: "Failure",
-            component: () => import("@/views/result/FailureResult.vue"),
-            meta: {
-              title: "失败页",
+              title: "error",
             },
           },
         ],

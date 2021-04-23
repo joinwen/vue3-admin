@@ -17,7 +17,7 @@ export default defineComponent({
   name: "BasicTable",
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
-    let tableData = ref([
+    let tableData = ref<Record<string, unknown>[]>([
       {
         date: "2021-01-05",
         name: "fly",
