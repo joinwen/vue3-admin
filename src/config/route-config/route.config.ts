@@ -55,7 +55,6 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
       {
         path: "/result",
         name: "Result",
-        redirect: "/result/failure",
         component: RouteView,
         meta: {
           title: "结果页",
@@ -82,7 +81,7 @@ const constantRoutes: Array<CustomRouteRecordRaw> = [
       },
       {
         path: "/exception",
-        name: "Failure",
+        name: "Exception",
         component: RouteView,
         meta: {
           title: "异常",
