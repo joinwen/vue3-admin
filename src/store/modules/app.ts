@@ -6,11 +6,12 @@ export default {
     fixedHeader: true,
     size: "",
     isMobile: false,
+    sideDrawer: false,
   },
   mutations: {
     SET_SIZE(state: appType, value: string): void {
       state.size = value;
-      state.isMobile = value == "xs";
+      state.sideDrawer = state.isMobile = value == "xs";
     },
     SET_SIDE_BAR(state: appType, value: boolean): void {
       state.sideBar = value;
@@ -23,6 +24,9 @@ export default {
     },
     SET_FIXED_HEADER(state: appType, value: boolean): void {
       state.fixedHeader = value;
+    },
+    SET_SIDE_DRAWER(state: appType, value: boolean): void {
+      state.sideDrawer = value;
     },
   },
 };

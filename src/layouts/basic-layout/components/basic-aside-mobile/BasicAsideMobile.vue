@@ -2,10 +2,11 @@
   <div class="Basic-Aside-Mobile">
     <el-drawer
       direction="ltr"
-      v-model="drawer"
+      v-model="sideDrawer"
       :with-header="false"
       size="200px"
       :show-close="false"
+      @close="handleClose"
     >
       <div class="aside">
         <div class="brand-logo" cursor="pointer">
@@ -31,20 +32,23 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, useStore } from "vuex";
 import Menu from "@/components/menu/Menu";
 export default defineComponent({
   name: "BasicAsideMobile",
   components: { Menu },
   setup(props, { attrs, emit, slots }) {
     console.log(props, attrs, emit, slots);
-    let drawer = ref(true);
+    const store = useStore();
+    const handleClose = () => {
+      store.commit("SET_SIDE_DRAWER", false);
+    };
     return {
-      drawer,
+      handleClose,
     };
   },
   computed: {
-    ...mapGetters(["routes"]),
+    ...mapGetters(["routes", "sideDrawer"]),
   },
 });
 </script>

@@ -6,6 +6,7 @@ export const getters: GetterTree<stateType, never> = {
   isMobile: (state) => state.app.isMobile,
   fixedHeader: (state) => state.app.fixedHeader,
   fixedSideBar: (state) => state.app.fixedSideBar,
+  sideDrawer: (state) => state.app.sideDrawer,
   avatar: (state) => state.user.avatar,
   nickname: (state) => state.user.nickname,
   routes: (state) => state.router.routes,

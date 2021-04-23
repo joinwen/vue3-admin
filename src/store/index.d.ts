@@ -9,6 +9,7 @@ declare interface appType {
   isMobile: boolean;
   fixedSideBar: boolean;
   fixedHeader: boolean;
+  sideDrawer: boolean;
 }
 
 declare interface routerType {

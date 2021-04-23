@@ -44,6 +44,7 @@ export default defineComponent({
   .aside {
   }
   .main {
+    min-width: 0;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;

@@ -1,7 +1,7 @@
 <template>
   <div class="Basic-Header">
-    <div :class="[generatePseudoHeaderClass, 'ease-in-0.25']"></div>
-    <header :class="[generateHeaderClass, 'ease-in-0.25', 'shadow-basic']">
+    <div :class="[generatePseudoHeaderClass]"></div>
+    <header :class="[generateHeaderClass, 'shadow-basic']">
       <span
         class="inline-flex hover:gray-400 ease-in-out-1/60"
         cursor="pointer"
@@ -24,7 +24,7 @@
     </header>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import { useStore, mapGetters } from "vuex";
 export default defineComponent({
@@ -33,7 +33,11 @@ export default defineComponent({
     console.log(props, attrs, emit, slots);
     const store = useStore();
     const handleTriggerSideMenu = () => {
-      store.commit("SET_SIDE_BAR", !store.getters.sideBar);
+      if (store.getters.isMobile) {
+        store.commit("SET_SIDE_DRAWER", !store.getters.sideDrawer);
+      } else {
+        store.commit("SET_SIDE_BAR", !store.getters.sideBar);
+      }
     };
     return {
       handleTriggerSideMenu,
@@ -42,14 +46,14 @@ export default defineComponent({
   computed: {
     ...mapGetters(["sideBar", "fixedSideBar", "fixedHeader", "isMobile"]),
     generatePseudoHeaderClass() {
-      let classList = ["pseudo-header"];
+      let classList: string[] = ["pseudo-header"];
       if (!this.fixedHeader) {
         classList.push("pseudo-header-hidden");
       }
       return classList.join(" ");
     },
     generateHeaderClass() {
-      let classList = ["header"];
+      let classList: string[] = ["header", "ease-in-0.25"];
       if (this.fixedHeader) {
         classList.push("header-fixed");
         if (!this.sideBar) {
@@ -99,6 +103,9 @@ export default defineComponent({
     top: 0;
     right: 0;
     left: @sideShrinkWidth;
+    & > span {
+      transform: rotate(180deg);
+    }
   }
   .header-static {
     width: 100%;
