@@ -11,14 +11,17 @@
     </el-breadcrumb>
   </div>
 </template>
-<script>
-import { defineComponent } from "vue";
-
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+interface DataType {
+  path: string;
+  label: string;
+}
 export default defineComponent({
   name: "BreadCrumb",
   props: {
     data: {
-      type: Array,
+      type: Array as PropType<DataType[]>,
       default() {
         return [];
       },
@@ -32,23 +35,26 @@ export default defineComponent({
       default: true,
     },
   },
-  computed: {
-    auto() {
-      return this.data.length == 0;
+  watch: {
+    $route: {
+      handler() {
+        this.generateMatchedRoutes();
+      },
     },
   },
   data() {
     return {
-      matches: [],
+      matches: [] as Array<DataType>,
+      auto: this.data.length === 0,
     };
   },
   mounted() {
     this.generateMatchedRoutes();
   },
   methods: {
-    generateMatchedRoutes() {
+    generateMatchedRoutes(): void {
       this.matches = this.$route.matched.map((item) => {
-        return { path: item.path || "/", label: item.meta.title };
+        return { path: item.path || "/", label: item.meta.title } as DataType;
       });
     },
   },
@@ -60,17 +66,17 @@ export default defineComponent({
   position: relative;
 }
 .md {
-  /deep/ .el-breadcrumb {
+  v-deep(.el-breadcrumb) {
     font-size: 16px;
   }
 }
 .base {
-  /deep/ .el-breadcrumb {
+  v-deep(.el-breadcrumb) {
     font-size: 14px;
   }
 }
 .lg {
-  /deep/ .el-breadcrumb {
+  v-deep(.el-breadcrumb) {
     font-size: 18px;
   }
 }
