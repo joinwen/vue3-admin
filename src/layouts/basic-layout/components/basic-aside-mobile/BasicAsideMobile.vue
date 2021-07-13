@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { mapGetters, useStore } from "vuex";
 import Menu from "@/components/menu/Menu";
 export default defineComponent({
