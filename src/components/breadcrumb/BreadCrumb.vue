@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     data: {
       type: Array as PropType<DataType[]>,
-      default() {
+      default: () => {
         return [];
       },
     },
@@ -42,10 +42,14 @@ export default defineComponent({
       },
     },
   },
+  computed: {
+    auto(): boolean {
+      return this.data.length === 0;
+    },
+  },
   data() {
     return {
       matches: [] as Array<DataType>,
-      auto: this.data.length === 0,
     };
   },
   mounted() {

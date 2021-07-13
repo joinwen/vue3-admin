@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
-import { mapGetters, mapMutations, useStore } from "vuex";
+import { defineComponent } from "vue";
+import { mapGetters, mapMutations } from "vuex";
 export default defineComponent({
   name: "BasicMain",
   setup(props, { attrs, emit, slots }) {

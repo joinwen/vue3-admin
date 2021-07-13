@@ -102,8 +102,8 @@ export default defineComponent({
       default: false,
     },
     columns: {
-      type: Array as PropType<Array<Record<string, any>>>,
-      default() {
+      type: Array as PropType<Array<Record<string, unknown>>>,
+      default: () => {
         return [];
       },
     },
@@ -116,8 +116,8 @@ export default defineComponent({
       default: undefined,
     },
     data: {
-      type: Array as PropType<Array<Record<string, any>>>,
-      default() {
+      type: Array as PropType<Array<Record<string, unknown>>>,
+      default: () => {
         return [];
       },
     },
@@ -148,9 +148,9 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(["size"]),
-    expandColumns(): Array<Record<string, any>> {
+    expandColumns(): Array<Record<string, unknown>> {
       return this.columns.filter(
-        (column: Record<string, any>) => column.expand
+        (column: Record<string, unknown>) => column.expand
       );
     },
   },
@@ -161,6 +161,13 @@ export default defineComponent({
       },
       immediate: true,
     },
+  },
+  data() {
+    return {
+      selectedData: [] as Array<Record<string, unknown>>,
+      limit: 10,
+      currentPage: 1,
+    };
   },
   emits: {
     "update:page": (val: number) => {
