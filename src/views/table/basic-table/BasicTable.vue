@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <h2>Basic Table</h2>
-    <base-table />
+  <div class="playground">
+    <h2>基础表单</h2>
+    <base-condition-form :data="conditions" />
+    <base-table :columns="columns" />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
+import BaseConditionForm from "@/components/form/BaseConditionForm.vue";
 import BaseTable from "@/components/table/BaseTable.vue";
+import modelHook from "@/views/table/basic-table/assets/model";
 export default defineComponent({
   name: "BasicTable",
-  components: { BaseTable },
-  setup(props, { attrs, emit, slots }) {
-    console.log(props, attrs, emit, slots);
+  components: { BaseConditionForm, BaseTable },
+  setup() {
+    const { columns, conditions } = modelHook();
+    onMounted(() => {
+      console.log("hi");
+    });
+    return {
+      columns,
+      conditions,
+    };
   },
 });
 </script>
