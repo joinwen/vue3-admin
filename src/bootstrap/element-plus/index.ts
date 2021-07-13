@@ -1,7 +1,9 @@
 import app from "../../core";
 // 如果要使用.scss样式文件，则需要引入base.scss文件
 // import 'element-plus/packages/theme-chalk/src/base.scss'
-
+import locale from "element-plus/lib/locale";
+import lang from "element-plus/lib/locale/lang/zh-cn";
+locale.use(lang);
 import {
   ElAlert,
   ElAside,

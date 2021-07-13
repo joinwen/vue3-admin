@@ -21,13 +21,13 @@ export default defineComponent({
   props: {
     data: {
       type: Array as PropType<Array<Record<string, unknown>>>,
-      default() {
+      default: () => {
         return [];
       },
     },
     prop: {
       type: Object as PropType<InputTreeItem>,
-      default() {
+      default: () => {
         return {
           label: "",
           value: undefined,
@@ -72,11 +72,13 @@ export default defineComponent({
     handleBlur() {
       this.visible = false;
     },
-    handleNodeClick(node: any) {
-      if (node.id && node.title) {
-        this.theProp.value = node.id;
-        this.theProp.label = node.title;
-      }
+    handleNodeClick(node: {
+      id: number | string;
+      title: string;
+      [any: string]: unknown;
+    }) {
+      this.theProp.value = node.id;
+      this.theProp.label = node.title;
       this.visible = false;
       this.$emit("change", this.theProp);
     },
@@ -89,7 +91,7 @@ export default defineComponent({
 }
 .el-input {
   caret-color: transparent;
-  v-deep(.el-input__inner) {
+  ::v-deep(.el-input__inner) {
     cursor: pointer;
   }
 }
