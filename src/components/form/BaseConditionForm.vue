@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form label-position="left" :inline="inline" :model="form" ref="formRef">
-      <el-row type="flex" align="center">
+      <el-row type="flex" align="center" style="margin-right: -2rem">
         <template v-for="(item, index) in data" :key="index">
           <el-col
             v-if="!item.btn"
@@ -53,61 +53,68 @@
                 :type="item.type"
                 :value="form[item.prop]"
                 :data="item.data"
+                :item="item"
                 :placeholder="item.placeholder"
                 v-model:newValue="form[item.prop]"
-                @emit="handleEmit"
+                @onChange="handleChange"
+                @onClick="handleClick"
               />
             </el-form-item>
           </el-col>
-          <el-col
-            :size="size"
-            :stretch-xl="item.span ? item.span.xl : 'auto'"
-            :stretch-lg="item.span ? item.span.lg : 'auto'"
-            :stretch-md="item.span ? item.span.md : 'auto'"
-            :stretch-sm="item.span ? item.span.sm : 'auto'"
-            :stretch-xs="item.span ? item.span.xs : 'auto'"
-            :xl="
-              item.span
-                ? item.span.xl === 'auto'
-                  ? undefined
-                  : item.span.xl
-                : undefined
-            "
-            :lg="
-              item.span
-                ? item.span.lg === 'auto'
-                  ? undefined
-                  : item.span.lg
-                : undefined
-            "
-            :md="
-              item.span
-                ? item.span.md === 'auto'
-                  ? undefined
-                  : item.span.md
-                : undefined
-            "
-            :xs="
-              item.span
-                ? item.span.xs === 'auto'
-                  ? undefined
-                  : item.span.xs
-                : undefined
-            "
-            :span="item.span ? item.span.final : 24"
-            v-else
-            style="min-height: 62px; margin-right: 2em"
-            :style="{ textAlign: item.align ? item.align : 'left' }"
-          >
-            <el-button
-              :type="item.type"
-              :icon="item.icon"
-              @click="onOthers(item)"
-            >
-              {{ item.label }}
-            </el-button>
-          </el-col>
         </template>
+        <div style="flex: 1 1 auto; justify-content: flex-end; display: flex">
+          <template v-for="(item, index) in data" :key="index">
+            <el-col
+              v-if="item.btn"
+              0
+              :size="size"
+              :stretch-xl="item.span ? item.span.xl : 'auto'"
+              :stretch-lg="item.span ? item.span.lg : 'auto'"
+              :stretch-md="item.span ? item.span.md : 'auto'"
+              :stretch-sm="item.span ? item.span.sm : 'auto'"
+              :stretch-xs="item.span ? item.span.xs : 'auto'"
+              :xl="
+                item.span
+                  ? item.span.xl === 'auto'
+                    ? undefined
+                    : item.span.xl
+                  : undefined
+              "
+              :lg="
+                item.span
+                  ? item.span.lg === 'auto'
+                    ? undefined
+                    : item.span.lg
+                  : undefined
+              "
+              :md="
+                item.span
+                  ? item.span.md === 'auto'
+                    ? undefined
+                    : item.span.md
+                  : undefined
+              "
+              :xs="
+                item.span
+                  ? item.span.xs === 'auto'
+                    ? undefined
+                    : item.span.xs
+                  : undefined
+              "
+              :span="item.span ? item.span.final : 24"
+              style="min-height: 62px; margin-right: 2em"
+              :style="{ textAlign: item.align ? item.align : 'left' }"
+            >
+              <el-button
+                :type="item.type"
+                :icon="item.icon"
+                @click="onOthers(item)"
+              >
+                {{ item.label }}
+              </el-button>
+            </el-col>
+          </template>
+        </div>
       </el-row>
     </el-form>
   </div>
@@ -171,10 +178,13 @@ export default defineComponent({
   },
 
   methods: {
-    handleEmit(): void {
+    handleChange(): void {
       if (this.immediate) {
-        this.$emit("search", this.form);
+        this.$emit("onSearch", this.form);
       }
+    },
+    handleClick(emitValue: string) {
+      this.$emit(emitValue);
     },
     onOthers(btn: FormItem): void {
       if (btn.download) {
@@ -183,11 +193,12 @@ export default defineComponent({
       if (btn.emit) {
         this.$emit(btn.emit, this.form);
       } else {
-        this.$emit("handleOthers", btn);
+        this.$emit("onOthers", btn);
       }
     },
     handleResetFields(): void {
-      this.formRef?.resetFields();
+      // this.formRef.value.resetFields();
+      // this.$refs.formRef.resetFields();
     },
   },
 });

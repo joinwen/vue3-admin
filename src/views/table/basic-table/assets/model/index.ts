@@ -5,11 +5,35 @@ const columns = [
   },
   {
     label: "用户名",
-    prop: "username",
+    prop: "name",
   },
   {
-    label: "性别",
-    prop: "gender",
+    label: "年龄",
+    prop: "age",
+  },
+  {
+    label: "爱好",
+    prop: "hobby",
+  },
+  {
+    label: "简介",
+    prop: "description",
+  },
+  {
+    label: "重量",
+    prop: "weight",
+  },
+  {
+    label: "身高",
+    prop: "height",
+  },
+  {
+    label: "装态",
+    prop: "status",
+  },
+  {
+    label: "地址",
+    prop: "address",
   },
 ];
 const conditions = [
@@ -38,12 +62,27 @@ const conditions = [
     label: "日期",
     prop: "time",
     type: "date-picker",
+    format: "YYYY-MM-DD hh:mm:ss",
+  },
+  {
+    type: "button",
+    text: "搜索",
+    buttonType: "primary",
+    emit: "onSearch",
   },
   {
     btn: true,
-    label: "搜索",
+    label: "添加",
     type: "primary",
-    emit: "search",
+    align: "right",
+    emit: "onAdd",
+  },
+  {
+    btn: true,
+    label: "修改",
+    type: "primary",
+    align: "right",
+    emit: "onEdit",
   },
 ];
 function modelHook(): Record<string, Array<Record<string, unknown>>> {

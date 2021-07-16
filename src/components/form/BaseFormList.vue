@@ -42,10 +42,10 @@
       v-model="theValue"
       :type="dateType"
       :format="dateFormat"
+      :value-format="item.format || valueFormat"
       :range-separator="rangeSeparator || null"
       :start-placeholder="startPlaceholder || null"
       :end-placeholder="endPlaceholder || null"
-      :value-format="valueFormat"
       :placeholder="placeholder"
       @change="handleChange"
     >
@@ -56,15 +56,28 @@
       :prop="theValue"
       @change="handleChange"
     />
+    <el-button
+      v-if="type === 'button'"
+      :type="item.buttonType"
+      @click="handleClick(item.emit)"
+      >{{ item.text }}</el-button
+    >
   </div>
 </template>
 <script lang="ts">
 import BaseInputTree from "@/components/input/BaseInputTree.vue";
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { FormItem } from "@/typings/components/form";
 export default defineComponent({
   name: "BaseFormList",
   components: { BaseInputTree },
   props: {
+    item: {
+      type: Object as PropType<FormItem>,
+      default: () => {
+        return {};
+      },
+    },
     type: {
       type: String,
       default: "input",
@@ -131,16 +144,19 @@ export default defineComponent({
       immediate: true,
     },
   },
-  emits: ["update:newValue", "emit"],
+  emits: ["update:newValue", "onChange", "onClick"],
   data() {
     return {
       theValue: undefined as unknown,
     };
   },
   methods: {
-    handleChange(val: number): void {
+    handleChange(val: unknown): void {
       this.$emit("update:newValue", val);
-      this.$emit("emit");
+      this.$emit("onChange");
+    },
+    handleClick(emit: string): void {
+      this.$emit("onClick", emit);
     },
   },
 });

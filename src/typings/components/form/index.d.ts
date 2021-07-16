@@ -11,5 +11,9 @@ interface FormItem {
   icon?: string;
   download?: string;
   emit?: string;
+  format?: string;
+  placeholder?: string;
+  buttonType?: string;
+  text?: string;
 }
 export { FormItem };

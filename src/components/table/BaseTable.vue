@@ -173,10 +173,10 @@ export default defineComponent({
     "update:page": (val: number) => {
       return val > 0;
     },
-    handlePageChange: (val: number) => {
+    onPageChange: (val: number) => {
       return val > 0;
     },
-    handlePageSizeChange: (val: number) => {
+    onPageSizeChange: (val: number) => {
       return val > 0;
     },
   },
@@ -185,13 +185,13 @@ export default defineComponent({
     handleCurrentChange(val: number): void {
       this.currentPage = val;
       this.$emit("update:page", val);
-      this.$emit("handlePageChange", val);
+      this.$emit("onPageChange", val);
     },
 
     // 处理页大小 Change 事件
     handleSizeChange(val: number): void {
       this.limit = val;
-      this.$emit("handlePageSizeChange", val);
+      this.$emit("onPageSizeChange", val);
     },
 
     // 处理选中数据
@@ -206,7 +206,7 @@ h2 {
   font-size: 16px;
   line-height: 2;
   color: #303133;
-  margin: 0px;
+  margin: 0;
 }
 .hidden-columns {
   v-deep(thead) {
