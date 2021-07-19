@@ -3,8 +3,8 @@ interface FormItem {
   align?: string;
   labelWidth?: string | number;
   span?: Record<string, number | string>;
-  label: string;
-  prop: string;
+  label?: string;
+  prop?: string;
   default?: string;
   data?: Array<Record<string, unknown>>;
   btn?: boolean;

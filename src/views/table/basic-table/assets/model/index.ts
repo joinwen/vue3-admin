@@ -1,4 +1,7 @@
-const columns = [
+import { ColumnType } from "@/typings/components/table";
+import { FormItem } from "@/typings/components/form";
+
+const columns: Array<ColumnType> = [
   {
     label: "id",
     prop: "id",
@@ -36,7 +39,7 @@ const columns = [
     prop: "address",
   },
 ];
-const conditions = [
+const conditions: Array<FormItem> = [
   {
     label: "姓名",
     prop: "username",
@@ -77,15 +80,8 @@ const conditions = [
     align: "right",
     emit: "onAdd",
   },
-  {
-    btn: true,
-    label: "修改",
-    type: "primary",
-    align: "right",
-    emit: "onEdit",
-  },
 ];
-function modelHook(): Record<string, Array<Record<string, unknown>>> {
+function modelHook(): Record<string, Array<FormItem | ColumnType>> {
   return {
     columns,
     conditions,

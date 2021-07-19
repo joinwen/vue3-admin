@@ -32,7 +32,9 @@ class BasicTableApi {
   addDataApi(data: unknown): Promise<any> {
     return new Promise((resolve) => {
       console.log(data);
-      resolve([]);
+      resolve({
+        flag: true,
+      });
     });
   }
   updateDataApi(data: unknown): Promise<any> {

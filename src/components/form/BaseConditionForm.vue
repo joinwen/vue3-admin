@@ -66,7 +66,6 @@
           <template v-for="(item, index) in data" :key="index">
             <el-col
               v-if="item.btn"
-              0
               :size="size"
               :stretch-xl="item.span ? item.span.xl : 'auto'"
               :stretch-lg="item.span ? item.span.lg : 'auto'"
@@ -159,7 +158,9 @@ export default defineComponent({
     data: {
       handler(newVal: Array<FormItem>): void {
         newVal.map((item: FormItem) => {
-          this.form[item.prop] = item.default;
+          if (item.prop) {
+            this.form[item.prop] = item.default;
+          }
         });
       },
     },
@@ -173,7 +174,9 @@ export default defineComponent({
   },
   mounted() {
     this.data.map((item) => {
-      this.form[item.prop] = item.default;
+      if (item.prop) {
+        this.form[item.prop] = item.default;
+      }
     });
   },
 

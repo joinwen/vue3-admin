@@ -89,6 +89,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
+import { ColumnType } from "@/typings/components/table";
 import { mapGetters } from "vuex";
 export default defineComponent({
   name: "BaseTable",
@@ -102,7 +103,7 @@ export default defineComponent({
       default: false,
     },
     columns: {
-      type: Array as PropType<Array<Record<string, unknown>>>,
+      type: Array as PropType<Array<ColumnType>>,
       default: () => {
         return [];
       },
@@ -116,7 +117,7 @@ export default defineComponent({
       default: undefined,
     },
     data: {
-      type: Array as PropType<Array<Record<string, unknown>>>,
+      type: Array as PropType<Array<ColumnType>>,
       default: () => {
         return [];
       },
@@ -148,10 +149,8 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(["size"]),
-    expandColumns(): Array<Record<string, unknown>> {
-      return this.columns.filter(
-        (column: Record<string, unknown>) => column.expand
-      );
+    expandColumns(): Array<ColumnType> {
+      return this.columns.filter((column: ColumnType) => column.expand);
     },
   },
   watch: {
